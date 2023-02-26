@@ -1,4 +1,4 @@
-version: "python:3.10.9-slim"
+version: "python:3.8"
 
 services:
 
@@ -18,7 +18,7 @@ services:
 
   api:
     image: swat88/diploma:latest
-    env_file: .secrets
+    env_file: .env
     restart: always
     environment:
       POSTGRES_HOST: db
@@ -28,7 +28,7 @@ services:
 
   collect_static:
     image: swat88/diploma:latest
-    env_file: .secrets
+    env_file: .env
     entrypoint: ''
     volumes:
       - django_static:/opt/static/
@@ -44,7 +44,7 @@ services:
         condition: service_started
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - django_static:/usr/share/nginx/html/static
+      - django_static:/usr/share/nginx/html/static/
 
 
 volumes:
