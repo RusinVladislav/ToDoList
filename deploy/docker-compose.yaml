@@ -18,7 +18,7 @@ services:
 
   api:
     image: swat88/diploma:latest
-    env_file: .env
+    env_file: .secrets
     restart: always
     environment:
       POSTGRES_HOST: db
@@ -28,7 +28,7 @@ services:
 
   collect_static:
     image: swat88/diploma:latest
-    env_file: .env
+    env_file: .secrets
     entrypoint: ''
     volumes:
       - django_static:/opt/static/
