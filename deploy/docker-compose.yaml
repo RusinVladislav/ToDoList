@@ -1,4 +1,4 @@
-version: "python:3.8"
+version: "3.8"
 
 services:
 
@@ -38,7 +38,7 @@ services:
     image: sermalenk/skypro-front:lesson-34
     restart: always
     ports:
-      - "8010:80"
+      - "80:80"
     depends_on:
       api:
         condition: service_started
