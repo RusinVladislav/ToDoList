@@ -5,6 +5,7 @@ on:
     branch:
       - 'main'
       - 'lesson_34'
+      - 'lesson_35'
 
 
 jobs:
