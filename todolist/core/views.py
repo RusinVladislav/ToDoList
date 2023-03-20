@@ -1,9 +1,9 @@
+
 from django.contrib.auth import login, logout
 from requests import Request
 from rest_framework import generics
 from rest_framework.permissions import BasePermission, IsAuthenticated
 from rest_framework.response import Response
-
 from todolist.core.models import User
 from todolist.core.serializers import CreateUserSerializer, LoginSerializer, ProfileSerializer, UpdatePasswordSerializer
 

@@ -3,6 +3,7 @@ from django.urls import path, include
 
 from django.conf import settings
 
+
 urlpatterns = [
     path('core/', include(('todolist.core.urls', 'core'))),
     path('admin/', admin.site.urls),

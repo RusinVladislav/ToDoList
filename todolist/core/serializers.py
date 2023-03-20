@@ -2,7 +2,6 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError, AuthenticationFailed
-
 from todolist.core.fields import PasswordFields
 from todolist.core.models import User
 
@@ -37,7 +36,6 @@ class LoginSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data: dict) -> User:
         user = authenticate(username=validated_data['username'], password=validated_data['password'])
-
         if not user:
             raise AuthenticationFailed
         return user
