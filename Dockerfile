@@ -31,4 +31,4 @@ CMD ["gunicorn", "todolist.wsgi", "-w", "2", "-b", "0.0.0.0:8000"]
 FROM base_image as dev_image
 
 RUN pip install -r /tmp/requirements.dev.txt
-CMD ["gunicorn", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "todolist.wsgi"]
