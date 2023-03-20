@@ -35,16 +35,16 @@ services:
     command: python3 manage.py collectstatic -c --no-input
 
   frontend:
-    image: sermalenk/skypro-front:lesson-34
+    image: sermalenk/skypro-front:lesson-35
     restart: always
     ports:
       - "80:80"
     depends_on:
       api:
         condition: service_started
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - django_static:/usr/share/nginx/html/static/
+#    volumes:
+#      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+#      - django_static:/usr/share/nginx/html/static/
 
 
 volumes:

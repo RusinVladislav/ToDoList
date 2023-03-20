@@ -2,14 +2,13 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError, AuthenticationFailed
-
-from todolist.core.fields import PasswordField
+from todolist.core.fields import PasswordFields
 from todolist.core.models import User
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
-    password = PasswordField(required=True)
-    password_repeat = PasswordField(required=True)
+    password = PasswordFields(required=True)
+    password_repeat = PasswordFields(required=True)
 
     class Meta:
         model = User
@@ -28,29 +27,30 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
 class LoginSerializer(serializers.ModelSerializer):
     username = serializers.CharField(required=True)
-    password = PasswordField(required=True)
+    password = PasswordFields(required=True)
 
     class Meta:
         model = User
         fields = ('id', 'first_name', 'last_name', 'email', 'username', 'password')
         read_only_fields = ('id', 'first_name', 'last_name', 'email')
 
-    def create(self, validate_data: dict) -> User:
-        user = authenticate(username=validate_data['username'], password=validate_data['password'])
+    def create(self, validated_data: dict) -> User:
+        user = authenticate(username=validated_data['username'], password=validated_data['password'])
         if not user:
             raise AuthenticationFailed
         return user
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = User
         fields = ('id', 'first_name', 'last_name', 'email', 'username')
 
 
 class UpdatePasswordSerializer(serializers.Serializer):
-    old_password = PasswordField(required=True)
-    new_password = PasswordField(required=True)
+    old_passwod = PasswordFields(required=True)
+    new_passwod = PasswordFields(required=True)
 
     def validate_old_password(self, old_password: str) -> str:
         if not self.instance.check_password(old_password):
