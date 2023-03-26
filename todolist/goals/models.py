@@ -35,15 +35,15 @@ class Goal(BaseModel):
         archived = 4, "В архиве"
 
     class Priority(models.IntegerChoices):
-        low = 1, 'L'
-        medium = 2, 'M'
-        high = 3, 'H'
-        critical = 4, 'C'
+        low = 1, 'Low'
+        medium = 2, 'Medium'
+        high = 3, 'High'
+        critical = 4, 'Critical'
 
     title = models.CharField(max_length=250)
     description = models.TextField(null=True, blank=True)
     category = models.ForeignKey(to=GoalCategory, on_delete=models.PROTECT, related_name='goals')
-    due_date = models.DateTimeField(null=True, blank=True)
+    due_date = models.DateField(null=True, blank=True)
     user = models.ForeignKey(to=User, on_delete=models.PROTECT, verbose_name='Автор')
     status = models.PositiveSmallIntegerField(choices=Status.choices, default=Status.to_do)
     priority = models.PositiveSmallIntegerField(choices=Priority.choices, default=Priority.medium)
@@ -54,7 +54,7 @@ class Goal(BaseModel):
 
 
 class GoalComment(BaseModel):
-    text = models.TextField(null=True, blank=True)
+    text = models.TextField(null=False, blank=True)
     goal = models.ForeignKey(to=Goal, on_delete=models.PROTECT, verbose_name='Цель')
 
     class Meta:
