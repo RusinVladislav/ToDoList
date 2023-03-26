@@ -54,7 +54,7 @@ class Goal(BaseModel):
 
 
 class GoalComment(BaseModel):
-    text = models.TextField(null=False, blank=True)
+    text = models.TextField(blank=True)
     goal = models.ForeignKey(to=Goal, on_delete=models.PROTECT, verbose_name='Цель')
 
     class Meta:
