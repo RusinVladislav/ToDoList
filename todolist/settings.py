@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'social_django',
     'todolist.core',
     'todolist.goals',
+    'todolist.bot',
 ]
 
 if DEBUG:
@@ -140,6 +141,25 @@ SOCIAL_AUTH_VK_EXTRA_DATA = [('email', 'email')]
 SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/logger-in/'
 SOCIAL_AUTH_NEW_USER_MODEL = 'core.User'
 
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+REST_FRAMEWORK = {'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination'}
+
+BOT_TOKEN = env.str('BOT_TOKEN')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'console',
+        },
+        'null': {'class': 'logging.NullHandler'},
+    },
+    'loggers': {
+        '': {
+            'level': 'DEBUG' if DEBUG else 'INFO',
+            'handlers': ['console'],
+        },
+        'django.server': {'handlers': ['null']},
+    },
 }
