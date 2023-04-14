@@ -21,7 +21,17 @@ requests = "^2.28.2"
 [tool.poetry.group.dev.dependencies]
 ansible-vault-win = "^1.0.0"
 django-extensions = "^3.2.1"
+pytest-django = "^4.5.2"
+pytest-factoryboy = "^2.5.1"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+#[tool.pytest.ini_options]
+#DJANGO_SETTING_MODULE = 'todolist.settings'
+#python_files = [
+#    'tests.py',
+#    'test_*.py',
+#    '*_tests.py',
+#]
