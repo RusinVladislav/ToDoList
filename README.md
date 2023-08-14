@@ -1,33 +1,70 @@
-ToDoList App is a web application built with Django REST Framework and includes a Telegram bot integration. 
-The frontend is developed and provided by SkyPro.
+# Todolist
+Simple todolist application(task tracker)
+***
+## Features
+- Registration/Login via VK Auth
+- Creating boards with goal
+  - Creating/changing/deleting categories
+  - Creating/changing/deleting goals
+  - Creating/changing/deleting comments
+  - Add another user to your boards with different roles
+- Filter goals by category
+- Search goals
+- Choose goal priority
+- Choose goal deadline
+- Telegram bot
+  - Get own goals using telegram bot
+  - Create goal using telegram bot
+***
+## Technology stack
+- Python 3.10.6
+- Django 4.1.7
+- Django REST Framework 3.14.0
+- Pydantic 1.10.7
+- Poetry 1.4.1
+- PostgreSQL
+- VK OAuth 2.0
+- Gunicorn
+- Nginx
+- Docker
+- Docker-compose
+- GitHub Actions
+- pytest-django
+- pre-commit
+- black
+- mypy
+***
+## Start app
+1. Create .env file:
+   ```
+   SECRET_KEY=
+   DEBUG=True
+   DATABASE_URL=
 
-Requirements: Python v3.10, Docker
+   POSTGRES_USER=
+   POSTGRES_PASSWORD=
+   POSTGRES_DB=
+   POSTGRES_HOST=
 
-ToDoList App provides the following functionalities:
-User Authentication
-Users can register and log in to the application. Additionally, users can log in using their VK (OAuth 2.0) account.
-Users can update their profile information and change their passwords.
-Boards, Categories, Goals and Comments
-Users can create boards and add categories to them.
-Within categories, users can create goals with various details, such as title, description, deadline, priority, and status.
-Users can leave comments on goals.
-Sharing Boards with other Users
-Users can grant access to specific boards for other users based on their usernames. The shared users can have either editing or read-only access to the board.
-Telegram Bot Integration
-Users can verify their Telegram account by entering a verification code received from the bot in their profile settings.
-Once verified, users can interact with the bot to view their goals or create new goals in existing categories, either owned by them or shared with them as editors.
-
-Usage
-After setting up the application, you can access it through the provided URLs:
-
-Web Application: http://localhost/
-
-API Schema (Swagger UI): http://localhost/api/schema/swagger-ui/
-
-Please make sure to read the API documentation to understand the available endpoints and functionalities.
-
-Note: There are some issues with the Swagger documentation at the moment.
-
-Testing. 
-To run the tests, ensure that you have pytest installed in your virtual environment. 
-If you don't have it, you can install it using: pip install pytest pytest-django
+   VK_AUTH_KEY=
+   VK_APP_SECRET_KEY=
+   BOT_TOKEN=
+2. Run docker container
+   ```
+    docker-compose up --build
+***
+## Project structure
+- `bot/`: telegram bot application
+- `core/`: login/register application
+- `goals/`: goals application
+- `tests/`: application`s tests
+- `todolist/`: Django settings
+- `.env`: environment variables
+- `.pre-commit-config.yaml`: pre-commit settings
+- `Dockerfile`: production docker file
+- `Dockerfile.dev`: developer docker file
+- `docker-compose.yaml`: docker compose file
+- `entrypoint.sh`: bash script to run migrations
+- `poetry.lock`: packages dependencies
+- `pyproject.toml`: packages list
+- `manage.py`: Django app management
